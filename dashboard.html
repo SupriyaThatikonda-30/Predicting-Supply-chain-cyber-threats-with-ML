@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cyber Health Dashboard</title>
+  <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .kpi { font-size: 28px; font-weight: 700; }
+    .muted { color: #6b7280; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h1>System Health Overview</h1>
+
+  <!-- USB Alert Panel -->
+  <div id="usb-alert" class="card" style="display:none;"></div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="muted">CPU Usage</div>
+      <div id="cpu-kpi" class="kpi">-- %</div>
+    </div>
+    <div class="card">
+      <div class="muted">Download</div>
+      <div id="dl-kpi" class="kpi">-- KB/s</div>
+      <div class="muted">Total Received: <span id="total-recv">-- MB</span></div>
+    </div>
+    <div class="card">
+      <div class="muted">Upload</div>
+      <div id="ul-kpi" class="kpi">-- KB/s</div>
+      <div class="muted">Total Sent: <span id="total-sent">-- MB</span></div>
+    </div>
+  </div>
+
+  <h2>CPU Usage (Live)</h2>
+  <canvas id="cpu-chart" width="900" height="280"></canvas>
+
+  <h2>Network Speed (Live)</h2>
+  <canvas id="net-chart" width="900" height="280"></canvas>
+
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
